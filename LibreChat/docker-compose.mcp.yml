@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mcp_mock:
+    image: node:20-slim
+    container_name: librechat-mcp-mock
+    working_dir: /usr/src/app
+    command: ["sh", "-c", "node index.js"]
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+    volumes:
+      - ./mcp-mock:/usr/src/app:ro
+    networks:
+      - default
